@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function() {
     var options = {
         url: function (phrase) {
             return "search/" + phrase;
