@@ -59,7 +59,10 @@ class SearchAutoCompleteMixin:
         values = []
 
         for field in self.search_fields:
-            value = getattr(instance, field)
+            try:
+                value = getattr(instance, field)
+            except AttributeError: 
+                continue 
             if not value:
                 continue
             values.append(str(value))
