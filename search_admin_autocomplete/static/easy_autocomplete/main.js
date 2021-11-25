@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var options = {
         url: function (phrase) {
-            return "search/" + phrase;
+            return "search/?q=" + phrase;
         },
         getValue: "keyword",
 
