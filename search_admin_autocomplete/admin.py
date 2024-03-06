@@ -3,7 +3,7 @@ from functools import reduce
 from operator import or_
 from typing import List
 
-from django.conf.urls import url
+
 from django.contrib import admin
 from django.db.models import Q, Model
 from django.http import HttpRequest
@@ -13,6 +13,12 @@ try:
     from django.urls import reverse
 except ImportError:
     from django.core.urlresolvers import reverse  # type: ignore
+
+try:
+    from django.conf.urls import url
+except ImportError:
+    from django.urls import path as url
+
 from django.http.response import HttpResponse, JsonResponse, HttpResponseBadRequest
 
 
