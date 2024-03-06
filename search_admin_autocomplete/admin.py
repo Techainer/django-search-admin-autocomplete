@@ -14,10 +14,7 @@ try:
 except ImportError:
     from django.core.urlresolvers import reverse  # type: ignore
 
-try:
-    from django.conf.urls import url
-except ImportError:
-    from django.urls import path as url
+from django.urls import re_path
 
 from django.http.response import HttpResponse, JsonResponse, HttpResponseBadRequest
 
@@ -42,7 +39,7 @@ class SearchAutoCompleteMixin:
 
     def get_urls(self) -> List[URLPattern]:
         urls = super().get_urls()
-        api_urls = [url(r'^search/(?P<search_term>\w{0,50})$', self.search_api)]
+        api_urls = [re_path(r'^search/(?P<search_term>\w{0,50})$', self.search_api)]
         return api_urls + urls
 
     def search_api(self, request: HttpRequest, search_term: str) -> HttpResponse:
